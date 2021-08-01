@@ -19,17 +19,17 @@ export function Authentification(props) {
     <>
       <h2 className="title is-2">
         Authentifizierung
-        <button class="button is-small is-ghost" onClick={() => setVisible(!visible)}>
+        <button className="button is-small is-ghost" onClick={() => setVisible(!visible)}>
           {visible ? "Zuklappen" : "Aufklappen"}
         </button>
       </h2>
       {visible && (
         <form action="#" onSubmit={handleSubmit}>
-          <div class="field">
-            <label class="label">Server</label>
-            <div class="control">
+          <div className="field">
+            <label className="label">Server</label>
+            <div className="control">
               <input
-                class="input"
+                className="input"
                 type="text"
                 value={server}
                 onInput={(e) => {
@@ -38,11 +38,11 @@ export function Authentification(props) {
               />
             </div>
           </div>
-          <div class="field">
-            <label class="label">Benutzername</label>
-            <div class="control">
+          <div className="field">
+            <label className="label">Benutzername</label>
+            <div className="control">
               <input
-                class="input"
+                className="input"
                 type="text"
                 value={username}
                 onInput={(e) => {
@@ -51,11 +51,11 @@ export function Authentification(props) {
               />
             </div>
           </div>
-          <div class="field">
-            <label class="label">Passwort</label>
-            <div class="control">
+          <div className="field">
+            <label className="label">Passwort</label>
+            <div className="control">
               <input
-                class="input"
+                className="input"
                 type="password"
                 value={password}
                 onInput={(e) => {
@@ -64,7 +64,7 @@ export function Authentification(props) {
               />
             </div>
           </div>
-          <button class="button is-primary" type="submit">
+          <button className="button is-primary" type="submit">
             Authentifizieren
           </button>
         </form>

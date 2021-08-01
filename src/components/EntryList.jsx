@@ -2,6 +2,9 @@ import { useState, useEffect } from "preact/hooks";
 
 export function EntryList(props) {
   const [list, setList] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const PAGE_SIZE = 20;
 
   useEffect(async () => {
     if (props.resource.length === 0) {
@@ -9,8 +12,18 @@ export function EntryList(props) {
     }
     const { olymp } = window;
     const listOfEntries = await olymp.entriesList(props.resource);
-    setList([...listOfEntries.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1))]);
+    setList([
+      ...listOfEntries.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1)),
+    ]);
+    setPage(1);
   }, [props.resource]);
+
+  const totalPages = () => {
+    if (list.length < PAGE_SIZE) {
+      return 1;
+    }
+    return Math.ceil(list.length / PAGE_SIZE);
+  };
 
   return (
     <>
@@ -24,7 +37,7 @@ export function EntryList(props) {
           </span>
         )}
       </p>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th>UID</th>
@@ -34,7 +47,7 @@ export function EntryList(props) {
           </tr>
         </thead>
         <tbody>
-          {list.map((entry) => {
+          {list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE).map((entry) => {
             return (
               <tr key={entry.entryUid}>
                 <td>
@@ -44,7 +57,7 @@ export function EntryList(props) {
                 <td>{entry.timestamp}</td>
                 <td>
                   <button
-                    class="button is-small"
+                    className="button is-small"
                     onClick={() => props.loadEntry(entry)}
                   >
                     Öffnen
@@ -55,6 +68,41 @@ export function EntryList(props) {
           })}
         </tbody>
       </table>
+      {totalPages() > 1 && (
+        <nav
+          className="pagination is-centered"
+          role="navigation"
+          aria-label="pagination"
+        >
+          <a
+            className="pagination-previous"
+            disabled={page === 1}
+            onClick={() => {
+              if (page <= 1) {
+                return;
+              }
+              setPage(page - 1);
+            }}
+          >
+            Zurück
+          </a>
+          <a
+            className="pagination-next"
+            disabled={page === totalPages()}
+            onClick={() => {
+              if (page >= totalPages()) {
+                return;
+              }
+              setPage(page + 1);
+            }}
+          >
+            Vorwärts
+          </a>
+          <ul className="pagination-list">
+            <li>{"Seite " + page + " von " + totalPages()}</li>
+          </ul>
+        </nav>
+      )}
     </>
   );
 }

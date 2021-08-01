@@ -17,7 +17,7 @@ export function ResourceList(props) {
       <button className="button is-primary" onClick={loadList}>
         {list.length === 0 ? "Liste abrufen" : "Liste aktualisieren"}
       </button>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th>UID</th>
@@ -39,7 +39,7 @@ export function ResourceList(props) {
                 <td>{entry.timestamp}</td>
                 <td>
                   <button
-                    class="button is-small"
+                    className="button is-small"
                     onClick={() => props.loadResource(entry.resourceUid)}
                   >
                     Öffnen
