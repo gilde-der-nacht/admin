@@ -4,7 +4,7 @@ export function Authentification(props) {
   const [server, setServer] = useState(props.host);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
