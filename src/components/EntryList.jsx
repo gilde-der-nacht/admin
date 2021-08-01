@@ -40,7 +40,7 @@ export function EntryList(props) {
                 <td>
                   <code>{entry.entryUid}</code>
                 </td>
-                <td>{entry.identification}</td>
+                <td>{entry.identification || <code>empty/hidden</code>}</td>
                 <td>{entry.timestamp}</td>
                 <td>
                   <button
