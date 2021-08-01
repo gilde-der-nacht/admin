@@ -6,7 +6,9 @@ export function ResourceList(props) {
   const loadList = async () => {
     const { olymp } = window;
     const listOfResources = await olymp.resourcesList();
-    setList([...listOfResources]);
+    setList([
+      ...listOfResources.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1)),
+    ]);
   };
 
   return (
@@ -31,7 +33,9 @@ export function ResourceList(props) {
                 <td>
                   <code>{entry.resourceUid}</code>
                 </td>
-                <td>{entry.publicBody.description || <code>empty/hidden</code>}</td>
+                <td>
+                  {entry.publicBody.description || <code>empty/hidden</code>}
+                </td>
                 <td>{entry.timestamp}</td>
                 <td>
                   <button

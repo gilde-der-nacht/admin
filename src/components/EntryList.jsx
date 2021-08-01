@@ -9,7 +9,7 @@ export function EntryList(props) {
     }
     const { olymp } = window;
     const listOfEntries = await olymp.entriesList(props.resource);
-    setList([...listOfEntries]);
+    setList([...listOfEntries.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1))]);
   }, [props.resource]);
 
   return (
