@@ -99,7 +99,15 @@ export function EntryList(props) {
             Vorwärts
           </a>
           <ul className="pagination-list">
-            <li>{"Seite " + page + " von " + totalPages()}</li>
+            <li>
+              {"Seite " +
+                page +
+                " von " +
+                totalPages() +
+                " / " +
+                list.length +
+                " Einträge"}
+            </li>
           </ul>
         </nav>
       )}
