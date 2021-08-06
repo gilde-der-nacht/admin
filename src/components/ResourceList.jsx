@@ -34,7 +34,7 @@ export function ResourceList(props) {
                   <code>{entry.resourceUid}</code>
                 </td>
                 <td>
-                  {entry.publicBody.description || <code>empty/hidden</code>}
+                  {entry.publicBody.description || <code>leer/versteckt</code>}
                 </td>
                 <td>{entry.timestamp}</td>
                 <td>

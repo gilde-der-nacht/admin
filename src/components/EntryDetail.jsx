@@ -4,10 +4,12 @@ export function EntryDetail(props) {
       return (
         <div className="box">
           <h3 className="title is-3">{key}</h3>
-          {typeof value === "boolean" || typeof value === "number" ? (
+          {value === null ? (
+            <code>leer/versteckt</code>
+          ) : typeof value === "boolean" || typeof value === "number" ? (
             value.toString()
           ) : Object.entries(value).length === 0 ? (
-            <code>empty/hidden</code>
+            <code>leer/versteckt</code>
           ) : typeof value === "object" ? (
             renderObject(value)
           ) : (
