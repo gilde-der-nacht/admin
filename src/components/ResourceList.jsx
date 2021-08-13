@@ -17,7 +17,7 @@ export function ResourceList(props) {
       <button className="button is-primary" onClick={loadList}>
         {list.length === 0 ? "Liste abrufen" : "Liste aktualisieren"}
       </button>
-      <table className="table">
+      <table className="table is-fullwidth">
         <thead>
           <tr>
             <th>UID</th>

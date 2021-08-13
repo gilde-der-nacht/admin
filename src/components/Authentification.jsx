@@ -5,6 +5,7 @@ export function Authentification(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,13 +14,19 @@ export function Authentification(props) {
       username,
       password,
     });
+    setShowSuccessMsg(true);
+    setVisible(false);
+    setTimeout(() => setShowSuccessMsg(false), 5000);
   };
 
   return (
     <>
       <h2 className="title is-2">
         Authentifizierung
-        <button className="button is-small is-ghost" onClick={() => setVisible(!visible)}>
+        <button
+          className="button is-small is-ghost"
+          onClick={() => setVisible(!visible)}
+        >
           {visible ? "Zuklappen" : "Aufklappen"}
         </button>
       </h2>
@@ -68,6 +75,13 @@ export function Authentification(props) {
             Authentifizieren
           </button>
         </form>
+      )}
+      {showSuccessMsg && (
+        <article class="message is-success mt-5">
+          <div class="message-body">
+            Zugangsdaten gespeichert (nicht validiert)
+          </div>
+        </article>
       )}
     </>
   );
