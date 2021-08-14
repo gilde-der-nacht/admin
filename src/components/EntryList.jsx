@@ -60,37 +60,39 @@ export function EntryList(props) {
           </div>
         )}
       </p>
-      <table className="table is-fullwidth">
-        <thead>
-          <tr>
-            <th>UID</th>
-            <th>Identifikation</th>
-            <th>Erstellt</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE).map((entry) => {
-            return (
-              <tr key={entry.entryUid}>
-                <td>
-                  <code>{entry.entryUid}</code>
-                </td>
-                <td>{entry.identification || <code>leer/versteckt</code>}</td>
-                <td>{entry.timestamp}</td>
-                <td>
-                  <button
-                    className="button is-small"
-                    onClick={() => props.loadEntry(entry)}
-                  >
-                    Öffnen
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table className="table is-fullwidth">
+          <thead>
+            <tr>
+              <th>UID</th>
+              <th>Identifikation</th>
+              <th>Erstellt</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE).map((entry) => {
+              return (
+                <tr key={entry.entryUid}>
+                  <td>
+                    <code>{entry.entryUid}</code>
+                  </td>
+                  <td>{entry.identification || <code>leer/versteckt</code>}</td>
+                  <td>{entry.timestamp}</td>
+                  <td>
+                    <button
+                      className="button is-small"
+                      onClick={() => props.loadEntry(entry)}
+                    >
+                      Öffnen
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       {totalPages() > 1 && (
         <nav
           className="pagination is-centered"
