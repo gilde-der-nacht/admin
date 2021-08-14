@@ -17,39 +17,41 @@ export function ResourceList(props) {
       <button className="button is-primary" onClick={loadList}>
         {list.length === 0 ? "Liste abrufen" : "Liste aktualisieren"}
       </button>
-      <table className="table is-fullwidth">
-        <thead>
-          <tr>
-            <th>UID</th>
-            <th>Bemerkung</th>
-            <th>Erstellt</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.map((entry) => {
-            return (
-              <tr key={entry.resourceUid}>
-                <td>
-                  <code>{entry.resourceUid}</code>
-                </td>
-                <td>
-                  {entry.publicBody.description || <code>leer/versteckt</code>}
-                </td>
-                <td>{entry.timestamp}</td>
-                <td>
-                  <button
-                    className="button is-small"
-                    onClick={() => props.loadResource(entry.resourceUid)}
-                  >
-                    Öffnen
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table className="table is-fullwidth">
+          <thead>
+            <tr>
+              <th>UID</th>
+              <th>Bemerkung</th>
+              <th>Erstellt</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {list.map((entry) => {
+              return (
+                <tr key={entry.resourceUid}>
+                  <td>
+                    <code>{entry.resourceUid}</code>
+                  </td>
+                  <td>
+                    {entry.publicBody.description || <code>leer/versteckt</code>}
+                  </td>
+                  <td>{entry.timestamp}</td>
+                  <td>
+                    <button
+                      className="button is-small"
+                      onClick={() => props.loadResource(entry.resourceUid)}
+                    >
+                      Öffnen
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }
